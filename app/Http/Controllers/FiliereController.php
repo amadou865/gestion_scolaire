@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filiere;
+use Exception;
 use Illuminate\Http\Request;
 
 class FiliereController extends Controller
@@ -11,7 +13,8 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        //
+        $filiere = Filiere::withCount('classes')->orderBy('created_at', 'desc')->paginate(10);
+        return view('filieres.index', compact('filieres'));
     }
 
     /**
@@ -19,7 +22,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        //
+        return view('filieres.create');
     }
 
     /**
@@ -27,38 +30,61 @@ class FiliereController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+        'code' => 'required|string|max:50|unique:filieres,code',
+        'nom_filiere' => 'required|string|max:255'
+        ]);
+
+        Filiere::create($request->all());
+
+        return redirect()->route('filieres.index')->with('success','Filiere créée avec succès.');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Filiere $filiere)
     {
-        //
+        $filiere->load('classes');
+        return view('filieres.show', compact('filiere'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Filiere $filiere)
     {
-        //
+        return view('filieres.edit', compact('filiere'));   
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Filiere $filiere)
     {
-        //
+        $request->validate([
+            'code' => 'required|string|max:50|unique:filieres,code,' . $filiere->id,
+            'nom_filiere' => 'required|string|max:255'
+        ]);
+
+         $filiere->update($request->all());
+
+         return redirect()->route('filiere.index')->with('success', 'Filiere mise à jour avec succès.');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Filiere $filiere)
     {
-        //
+        try {
+            $filiere->delete();
+            return redirect()->route('filieres.index')->with('success', 'Filiere supprimée avec succès.');
+        } catch (Exception $e) {
+            return redirect()->route('filieres.index')->with('error', 'Impossible de supprimer cette filiere.');
+        }
     }
 }
