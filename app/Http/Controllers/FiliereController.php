@@ -84,7 +84,7 @@ class FiliereController extends Controller
             $filiere->delete();
             return redirect()->route('filieres.index')->with('success', 'Filiere supprimée avec succès.');
         } catch (Exception $e) {
-            return redirect()->route('filieres.index')->with('error', 'Impossible de supprimer cette filiere.');
+            return redirect()->route('filiere.index')->with('error', 'Impossible de supprimer cette filiere.');
         }
     }
 }
