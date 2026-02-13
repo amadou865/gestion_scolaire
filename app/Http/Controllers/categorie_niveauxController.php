@@ -30,7 +30,7 @@ class categorie_niveauxController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
         'categories_niveau' => 'required'
         ]);
 
