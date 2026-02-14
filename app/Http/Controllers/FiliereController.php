@@ -14,7 +14,7 @@ class FiliereController extends Controller
     public function index()
     {
         $filiere = Filiere::withCount('classes')->orderBy('created_at', 'desc')->paginate(10);
-        return view('filieres.index', compact('filieres'));
+        return view('filieres.index', compact('filiere'));
     }
 
     /**

@@ -40,7 +40,7 @@
                     </thead>
                     <tbody>
                         {{-- Si aucune classe --}}
-                        @forelse($classes as $classe)
+                        @forelse($classe as $classe)
                             <tr>
                                 <td>{{ $classe->id_classe }}</td>
                                 
@@ -142,7 +142,7 @@
             
             {{-- Pagination --}}
             <div class="d-flex justify-content-center mt-3">
-                {{ $classes->links() }}
+                {{ $classe->links() }}
             </div>
         </div>
     </div>

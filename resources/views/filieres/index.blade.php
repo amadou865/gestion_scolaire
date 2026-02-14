@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($filieres as $filiere)
+                        @forelse($filiere as $filiere)
                             <tr>
                                 <td>{{ $filiere->id }}</td>
                                 <td><span class="badge bg-secondary">{{ $filiere->code }}</span></td>
@@ -78,7 +78,7 @@
             </div>
             
             <div class="d-flex justify-content-center mt-3">
-                {{ $filieres->links() }}
+                {{ $filiere->links() }}
             </div>
         </div>
     </div>

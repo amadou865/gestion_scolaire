@@ -15,7 +15,7 @@ class TarifController extends Controller
     public function index()
     {
         $tarif= Tarif::orderBy('created_at', 'desc')->paginate(10);
-        return view('tarifs.index', compact('tarifs'));
+        return view('tarifs.index', compact('tarif'));
     }
 
     /**

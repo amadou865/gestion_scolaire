@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($annees as $annee)
+                        @forelse($annee_academique as $annee)
                             <tr>
                                 <td>{{ $annee->id_annee_ac }}</td>
                                 <td><strong>{{ $annee->annee_ac }}</strong></td>
@@ -84,7 +84,7 @@
             </div>
             
             <div class="d-flex justify-content-center mt-3">
-                {{ $annees->links() }}
+                {{ $annee_academique->links() }}
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ class Annee_academiqueController extends Controller
      */
     public function index()
     {
-        $annee_acamique = Annee_academique::orderBy('created_at', 'desc')->paginate(10);
+        $annee_academique = Annee_academique::orderBy('created_at', 'desc')->paginate(10);
         return view('annee_academiques.index', compact('annee_academique'));
     }
 

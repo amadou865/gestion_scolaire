@@ -40,7 +40,7 @@
                     </thead>
                     <tbody>
                         {{-- Si aucun tarif --}}
-                        @forelse($tarifs as $tarif)
+                        @forelse($tarif as $tarif)
                             <tr>
                                 <td>{{ $tarif->id_tarifs }}</td>
                                 
@@ -127,7 +127,7 @@
             
             {{-- Pagination --}}
             <div class="d-flex justify-content-center mt-3">
-                {{ $tarifs->links() }}
+                {{ $tarif->links() }}
             </div>
         </div>
     </div>
